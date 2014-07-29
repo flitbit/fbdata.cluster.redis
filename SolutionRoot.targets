@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  This file prepares the solution-root and imports any solution-level targets
+	for inclusion in the build. It is used during command line execution as well
+	as during Visual Studio builds.
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">			
+	<PropertyGroup>
+		<SolutionDir>$(MSBuildThisFileDirectory.Trim('\\'))</SolutionDir>
+	</PropertyGroup>
+	<PropertyGroup>
+		<BuildToolsDirOffset></BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\..\..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\..\..\..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\..\..\..\..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\..\..\..\..\..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDirOffset Condition="!Exists('$(SolutionDir)\$(BuildToolsDirOffset).build\BuildTools.targets')">..\..\..\..\..\..\..\..\..\..\..\</BuildToolsDirOffset>
+		<BuildToolsDir>$(SolutionDir)\$(BuildToolsDirOffset)</BuildToolsDir>
+	</PropertyGroup>
+	
+	<Import Project="$(BuildToolsDir).build\BuildTools.targets"/>
+
+	<Import Condition="Exists('$(SolutionDir)\VersionRoot.targets')"
+		Project="$(SolutionDir)\VersionRoot.targets" />
+	
+	<Import Condition="Exists('$(SolutionDir)\sln-import-before.targets')" 
+		Project="$(SolutionDir)\sln-import-before.targets" />
+</Project>
